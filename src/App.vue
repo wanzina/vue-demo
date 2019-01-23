@@ -1,31 +1,35 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+   <!--  <loading v-show="$root.bloading"></loading> -->
+    <loading v-show="bLoading"></loading>
+    <footbar></footbar>
+    <transition mode="out-in" 
+    enter-active-class="animated fadeIn"
+    >
+       <router-view/>
+    </transition>
   </div>
 </template>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+ 
 </style>
+<script>
+
+import footbar from './components/footbar';
+//import loading from './components/loading'
+import {mapGetters} from 'vuex';
+import * as types from './store/types.js'
+export default {
+  components: {
+    footbar
+  },
+  computed: mapGetters([
+    'bLoading'
+  ]),
+  methods: {
+   
+  }
+}
+</script>
+
